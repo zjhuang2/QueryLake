@@ -14,7 +14,7 @@ const QueryResults = (props) => {
   return (
     <div>
       <Heading fontSize="xl" margin={4} color={themeColor.queryTagText}>
-        Query Results
+        {props.termType}
       </Heading>
 
       <Wrap

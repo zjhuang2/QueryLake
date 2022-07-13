@@ -34,6 +34,13 @@ const Focus = (props) => {
           terms={terms}
           updateTerms={setTerms}
           themeColor={colorScheme}
+          termType="Included Terms"
+        />
+        <QueryResults
+          terms={terms}
+          updateTerms={setTerms}
+          themeColor={colorScheme}
+          termType="Excluded Terms"
         />
         <QueryRec themeColor={colorScheme} />
       </Box>
