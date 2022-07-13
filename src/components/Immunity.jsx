@@ -14,11 +14,11 @@ export const Immunity = () => {
   ]);
 
   const colorScheme = {
-    border: "red.100",
-    addTermButton: "red.700",
-    queryTagBg: "red.100",
-    queryTagText: "red.700",
-    generateButton: "red",
+    border: "teal.100",
+    addTermButton: "teal.700",
+    queryTagBg: "teal.100",
+    queryTagText: "teal.700",
+    generateButton: "teal",
   };
 
   return (
@@ -34,6 +34,13 @@ export const Immunity = () => {
           terms={terms}
           updateTerms={setTerms}
           themeColor={colorScheme}
+          termType="Included Terms"
+        />
+        <QueryResults
+          terms={terms}
+          updateTerms={setTerms}
+          themeColor={colorScheme}
+          termType="Excluded Terms"
         />
         <QueryRec themeColor={colorScheme} />
       </Box>
