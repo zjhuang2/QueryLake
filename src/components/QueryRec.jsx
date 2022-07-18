@@ -11,20 +11,71 @@ import {
   useDisclosure,
   Wrap,
   WrapItem,
+  Heading,
+  Divider,
+  TagLabel,
+  Tag,
+  TagCloseButton,
 } from "@chakra-ui/react";
 import RelatedTermTag from "./Widgets/RelatedTermTag";
+import RelatedTermSelectedTag from "./Widgets/RelatedTermSelectedTag";
 
 const QueryRec = (props) => {
   const [relatedTerms, setRelatedTerms] = useState([
-    "Nervous System",
-    "Sports Psychology",
-    "Productivity",
-    "Attention Span",
-    "Awareness",
-    "ADHD",
+    { id: "nervous-system", text: "Nervous System" },
+    { id: "sports-psychology", text: "Sports Psychology" },
+    { id: "productivity", text: "Productivity" },
+    { id: "attention-span", text: "Attention Span" },
+    { id: "awareness", text: "Awareness" },
+    { id: "adhd", text: "ADHD" },
   ]);
+
+  const [relatedTermsToInclude, setRelatedTermsToInclude] = useState([]);
+  const [relatedTermsToExclude, setRelatedTermsToExclude] = useState([]);
+
   const themeColor = props.themeColor;
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // Transfer RT Pool to Included Section
+  const includeRelatedTerm = (name) => {
+    const newRelatedTermsArray = relatedTerms.filter(
+      (item) => item.text !== name
+    );
+    setRelatedTerms(newRelatedTermsArray);
+    const termToInclude = relatedTerms.find((item) => item.text === name);
+    setRelatedTermsToInclude([...relatedTermsToInclude, termToInclude]);
+  };
+
+  const excludeRelatedTerm = (name) => {
+    const newRelatedTermsArray = relatedTerms.filter(
+      (item) => item.text !== name
+    );
+    setRelatedTerms(newRelatedTermsArray);
+    const termToExclude = relatedTerms.find((item) => item.text === name);
+    setRelatedTermsToExclude([...relatedTermsToExclude, termToExclude]);
+  };
+
+  const IncludedToPool = (name) => {
+    const newIncludedTermsArray = relatedTermsToInclude.filter(
+      (item) => item.text !== name
+    );
+    setRelatedTermsToInclude(newIncludedTermsArray);
+    const termToReturn = relatedTermsToInclude.find(
+      (item) => item.text === name
+    );
+    setRelatedTerms([...relatedTerms, termToReturn]);
+  };
+
+  const excludedToPool = (name) => {
+    const newExcludedTermsArray = relatedTermsToExclude.filter(
+      (item) => item.text !== name
+    );
+    setRelatedTermsToExclude(newExcludedTermsArray);
+    const termToReturn = relatedTermsToExclude.find(
+      (item) => item.text === name
+    );
+    setRelatedTerms([...relatedTerms, termToReturn]);
+  };
 
   return (
     <div>
@@ -46,7 +97,45 @@ const QueryRec = (props) => {
             <Wrap>
               {relatedTerms.map((item) => (
                 <WrapItem>
-                  <RelatedTermTag name={item} />
+                  <RelatedTermTag
+                    name={item.text}
+                    currentRelatedTerms={relatedTerms}
+                    onIncludeRelatedTerm={includeRelatedTerm}
+                    onExcludeRelatedTerm={excludeRelatedTerm}
+                  />
+                </WrapItem>
+              ))}
+            </Wrap>
+
+            <div>&nbsp;</div>
+
+            <Heading size="md">Included</Heading>
+            <Divider />
+            <Wrap>
+              {relatedTermsToInclude.map((item) => (
+                <WrapItem>
+                  <RelatedTermSelectedTag
+                    name={item.text}
+                    currentRelatedTerms={relatedTerms}
+                    onReturnToPool={IncludedToPool}
+                    tagColor="green"
+                  />
+                </WrapItem>
+              ))}
+            </Wrap>
+
+            <div>&nbsp;</div>
+            <Heading size="md">Excluded</Heading>
+            <Divider />
+            <Wrap>
+              {relatedTermsToExclude.map((item) => (
+                <WrapItem>
+                  <RelatedTermSelectedTag
+                    name={item.text}
+                    currentRelatedTerms={relatedTerms}
+                    onReturnToPool={excludedToPool}
+                    tagColor="red"
+                  />
                 </WrapItem>
               ))}
             </Wrap>

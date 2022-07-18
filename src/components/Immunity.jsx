@@ -6,11 +6,17 @@ import QueryRec from "./QueryRec";
 import { getQueriesForElement } from "@testing-library/react";
 
 export const Immunity = () => {
-  const [terms, setTerms] = useState([
-    "Immunity",
-    "Immune System",
-    "Virus",
-    "Infection",
+  const [includedTerms, setIncludedTerms] = useState([
+    { id: "immunity", text: "Immunity" },
+    { id: "immune-system", text: "Immune System" },
+    { id: "virus", text: "Virus" },
+    { id: "infection", text: "Infection" },
+  ]);
+
+  const [excludedTerms, setExcludedTerms] = useState([
+    { id: "trump", text: "Trump" },
+    { id: "biden", text: "Biden" },
+    { id: "roe-v-wade", text: "Roe v Wade" },
   ]);
 
   const colorScheme = {
@@ -26,19 +32,21 @@ export const Immunity = () => {
       <Box maxW="100%" borderWidth="1px" margin={4} borderRadius="lg">
         <Heading m={4}>Immunity</Heading>
         <InputArea
-          currentTerms={terms}
-          onAddTerm={setTerms}
+          currentIncludedTerms={includedTerms}
+          currentExcludedTerms={excludedTerms}
+          onAddIncludeTerm={setIncludedTerms}
+          onAddExcludeTerm={setExcludedTerms}
           themeColor={colorScheme}
         />
         <QueryResults
-          terms={terms}
-          updateTerms={setTerms}
+          terms={includedTerms}
+          updateTerms={setIncludedTerms}
           themeColor={colorScheme}
           termType="Included Terms"
         />
         <QueryResults
-          terms={terms}
-          updateTerms={setTerms}
+          terms={excludedTerms}
+          updateTerms={setExcludedTerms}
           themeColor={colorScheme}
           termType="Excluded Terms"
         />

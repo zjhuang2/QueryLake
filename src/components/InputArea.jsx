@@ -11,10 +11,25 @@ const InputArea = (props) => {
     setInputTerm(userInput);
   };
 
-  const handleAddTerm = (event) => {
+  const handleAddIncludedTerm = (event) => {
     event.preventDefault();
     const userInput = inputTerm;
-    props.onAddTerm([...props.currentTerms, userInput]);
+    const id = userInput.trim().toLowerCase().replace(/\s+/g, "-");
+    props.onAddIncludeTerm([
+      ...props.currentIncludedTerms,
+      { id: id, text: userInput },
+    ]);
+    setInputTerm("");
+  };
+
+  const handleAddExcludedTerm = (event) => {
+    event.preventDefault();
+    const userInput = inputTerm;
+    const id = userInput.trim().toLowerCase().replace(/\s+/g, "-");
+    props.onAddExcludeTerm([
+      ...props.currentExcludedTerms,
+      { id: id, text: userInput },
+    ]);
 
     setInputTerm("");
   };
@@ -22,33 +37,35 @@ const InputArea = (props) => {
   return (
     <div>
       <Box width="100%">
-        <form
-          onSubmit={(event) => {
-            handleAddTerm(event);
-          }}
-        >
-          <HStack spacing="2%">
-            <Input
-              placeholder="Add Query Terms"
-              size="lg"
-              width="50%"
-              margin={4}
-              required
-              type="text"
-              id="newTerm"
-              onChange={(event) => handleChange(event)}
-              value={inputTerm}
-            />
-            <Button
-              bgColor={themeColor.addTermButton}
-              color="white"
-              size="lg"
-              onClick={handleAddTerm}
-            >
-              Add Term
-            </Button>
-          </HStack>
-        </form>
+        <HStack spacing="2%">
+          <Input
+            placeholder="Add Query Terms"
+            size="lg"
+            width="50%"
+            margin={4}
+            required
+            type="text"
+            id="newTerm"
+            onChange={(event) => handleChange(event)}
+            value={inputTerm}
+          />
+          <Button
+            bgColor={themeColor.addTermButton}
+            color="white"
+            size="lg"
+            onClick={handleAddIncludedTerm}
+          >
+            Add Term to Include
+          </Button>
+          <Button
+            bgColor={themeColor.addTermButton}
+            color="white"
+            size="lg"
+            onClick={handleAddExcludedTerm}
+          >
+            Add Term to Exclude
+          </Button>
+        </HStack>
       </Box>
     </div>
   );
