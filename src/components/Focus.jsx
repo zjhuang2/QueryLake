@@ -7,10 +7,16 @@ import { db } from "../firebase-config";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 
 const Focus = (props) => {
-  const [terms, setTerms] = useState([
-    "Cognition",
-    "Cognitive",
-    "Sports Psychology",
+  const [includedTerms, setIncludedTerms] = useState([
+    { id: "cognition", text: "Cognition" },
+    { id: "cognitive", text: "Cognitive" },
+    { id: "sports-psychology", text: "Sports Psychology" },
+  ]);
+
+  const [excludedTerms, setExcludedTerms] = useState([
+    { id: "trump", text: "Trump" },
+    { id: "biden", text: "Biden" },
+    { id: "roe-v-wade", text: "Roe v Wade" },
   ]);
 
   const colorScheme = {
@@ -26,23 +32,30 @@ const Focus = (props) => {
       <Box maxW="100%" borderWidth="1px" margin={4} borderRadius="lg">
         <Heading m={4}>Mental Performance and Focus</Heading>
         <InputArea
-          currentTerms={terms}
-          onAddTerm={setTerms}
+          currentIncludedTerms={includedTerms}
+          currentExcludedTerms={excludedTerms}
+          onAddIncludeTerm={setIncludedTerms}
+          onAddExcludeTerm={setExcludedTerms}
           themeColor={colorScheme}
         />
         <QueryResults
-          terms={terms}
-          updateTerms={setTerms}
+          terms={includedTerms}
+          updateTerms={setIncludedTerms}
           themeColor={colorScheme}
           termType="Included Terms"
         />
         <QueryResults
-          terms={terms}
-          updateTerms={setTerms}
+          terms={excludedTerms}
+          updateTerms={setExcludedTerms}
           themeColor={colorScheme}
           termType="Excluded Terms"
         />
-        <QueryRec themeColor={colorScheme} />
+        <QueryRec
+          themeColor={colorScheme}
+          currentIncludedTerms={includedTerms}
+          currentExcludedTerms={excludedTerms}
+          updateTerms={setIncludedTerms}
+        />
       </Box>
     </div>
   );

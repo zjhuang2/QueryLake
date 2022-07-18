@@ -7,7 +7,7 @@ const QueryResults = (props) => {
   const themeColor = props.themeColor;
 
   const deleteTerm = (termName) => {
-    const newTermArray = terms.filter((term) => term !== termName);
+    const newTermArray = terms.filter((term) => term.text !== termName);
     props.updateTerms(newTermArray);
   };
 
@@ -27,7 +27,7 @@ const QueryResults = (props) => {
         <WrapItem>
           {terms.map((term) => (
             <QueryTag
-              name={term}
+              name={term.text}
               onDelete={deleteTerm}
               themeColor={themeColor}
             />

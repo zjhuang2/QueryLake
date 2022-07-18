@@ -25,7 +25,7 @@ const ExcludedTermRec = () => {
     <div>
       <Box maxW="100%" margin={4} borderRadius="lg">
         <Heading m={3} color="red.600">
-          Real-Time Excluded Term Recommendations
+          Real-Time Topical Trends
         </Heading>
         <QueryResults
           terms={terms}

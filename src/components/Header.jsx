@@ -6,7 +6,7 @@ const Header = () => {
     <div className="header">
       <Container maxW="100%" bg="red.600" color="white">
         <Text fontSize="5xl" fontWeight="bold">
-          TCR Query Collections
+          KOuery for TCR
         </Text>
       </Container>
     </div>
