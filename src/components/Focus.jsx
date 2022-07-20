@@ -1,60 +1,57 @@
 import { React, useState, useEffect } from "react";
 import { Box, Heading, useRangeSlider, Button, Input } from "@chakra-ui/react";
-import QueryResults from "./QueryResults";
+import QueryResults from "./PrimaryTerms";
 import InputArea from "./InputArea";
-import QueryRec from "./QueryRec";
 import { db } from "../firebase-config";
 import { collection, getDocs, addDoc } from "firebase/firestore";
+import ExcludedTerms from "./ExcludedTerms";
+import PrimaryTerms from "./PrimaryTerms";
 
 const Focus = (props) => {
-  const [includedTerms, setIncludedTerms] = useState([
-    { id: "cognition", text: "Cognition" },
-    { id: "cognitive", text: "Cognitive" },
-    { id: "sports-psychology", text: "Sports Psychology" },
-  ]);
-
-  const [excludedTerms, setExcludedTerms] = useState([
-    { id: "trump", text: "Trump" },
-    { id: "biden", text: "Biden" },
-    { id: "roe-v-wade", text: "Roe v Wade" },
+  const [terms, setTerms] = useState([
+    { id: "cognition", text: "Cognition", type: "primary" },
+    { id: "cognitive", text: "Cognitive", type: "primary" },
+    { id: "sports-psychology", text: "Sports Psychology", type: "primary" },
+    { id: "trump", text: "Trump", type: "excluded" },
+    { id: "biden", text: "Biden", type: "excluded" },
+    { id: "roe-v-wade", text: "Roe v Wade", type: "excluded" },
   ]);
 
   const colorScheme = {
-    border: "purple.100",
-    addTermButton: "purple.700",
-    queryTagBg: "purple.100",
-    queryTagText: "purple.700",
-    generateButton: "purple",
+    border: "green.100",
+    addTermButton: "green.700",
+    queryTagBg: "green.100",
+    queryTagText: "green.700",
+    generateButton: "green",
   };
 
   return (
     <div className="Focus">
-      <Box maxW="100%" borderWidth="1px" margin={4} borderRadius="lg">
+      <Box
+        maxW="80%"
+        margin="1em auto"
+        rounded="2xl"
+        boxShadow="2xl"
+        padding={2}
+      >
         <Heading m={4}>Mental Performance and Focus</Heading>
         <InputArea
-          currentIncludedTerms={includedTerms}
-          currentExcludedTerms={excludedTerms}
-          onAddIncludeTerm={setIncludedTerms}
-          onAddExcludeTerm={setExcludedTerms}
+          currentTerms={terms}
+          onUpdateTerms={setTerms}
           themeColor={colorScheme}
         />
-        <QueryResults
-          terms={includedTerms}
-          updateTerms={setIncludedTerms}
+        <PrimaryTerms
+          terms={terms}
+          updateTerms={setTerms}
           themeColor={colorScheme}
-          termType="Included Terms"
+          termType="Primary Terms"
         />
-        <QueryResults
-          terms={excludedTerms}
-          updateTerms={setExcludedTerms}
+        <div>&nbsp;</div>
+        <ExcludedTerms
+          terms={terms}
+          updateTerms={setTerms}
           themeColor={colorScheme}
           termType="Excluded Terms"
-        />
-        <QueryRec
-          themeColor={colorScheme}
-          currentIncludedTerms={includedTerms}
-          currentExcludedTerms={excludedTerms}
-          updateTerms={setIncludedTerms}
         />
       </Box>
     </div>

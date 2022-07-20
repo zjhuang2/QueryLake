@@ -1,7 +1,7 @@
 import { Heading, Box } from "@chakra-ui/react";
 import React from "react";
 import { useState } from "react";
-import QueryResults from "./QueryResults";
+import PrimaryTerms from "./PrimaryTerms";
 
 const ExcludedTermRec = () => {
   const [terms, setTerms] = useState([
@@ -27,7 +27,7 @@ const ExcludedTermRec = () => {
         <Heading m={3} color="red.600">
           Real-Time Topical Trends
         </Heading>
-        <QueryResults
+        <PrimaryTerms
           terms={terms}
           updateTerms={setTerms}
           themeColor={colorScheme}

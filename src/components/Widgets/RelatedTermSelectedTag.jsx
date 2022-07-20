@@ -2,17 +2,15 @@ import React from "react";
 import { Tag, TagLabel, TagCloseButton } from "@chakra-ui/react";
 
 const RelatedTermSelectedTag = (props) => {
-  const name = props.name;
-
   const handleReturnToPool = () => {
-    props.onReturnToPool(name);
+    props.onReturnToPool(props.id);
   };
 
   return (
     <div>
       <Tag
         size="lg"
-        key={props.name.trim().toLowerCase().replace(/\s+/g, "-")}
+        id={props.id}
         borderRadius={6}
         variant="solid"
         colorScheme={props.tagColor}
