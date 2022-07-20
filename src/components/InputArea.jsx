@@ -15,9 +15,9 @@ const InputArea = (props) => {
     event.preventDefault();
     const userInput = inputTerm;
     const id = userInput.trim().toLowerCase().replace(/\s+/g, "-");
-    props.onAddIncludeTerm([
-      ...props.currentIncludedTerms,
-      { id: id, text: userInput },
+    props.onUpdateTerms([
+      ...props.currentTerms,
+      { id: id, text: userInput, type: "primary" },
     ]);
     setInputTerm("");
   };
@@ -26,9 +26,9 @@ const InputArea = (props) => {
     event.preventDefault();
     const userInput = inputTerm;
     const id = userInput.trim().toLowerCase().replace(/\s+/g, "-");
-    props.onAddExcludeTerm([
-      ...props.currentExcludedTerms,
-      { id: id, text: userInput },
+    props.onUpdateTerms([
+      ...props.currentTerms,
+      { id: id, text: userInput, type: "excluded" },
     ]);
 
     setInputTerm("");
@@ -50,20 +50,20 @@ const InputArea = (props) => {
             value={inputTerm}
           />
           <Button
-            bgColor={themeColor.addTermButton}
-            color="white"
+            color={themeColor.addTermButton}
+            variant="ghost"
             size="lg"
             onClick={handleAddIncludedTerm}
           >
-            Add Term to Include
+            Add Primary Term
           </Button>
           <Button
-            bgColor={themeColor.addTermButton}
-            color="white"
+            color={themeColor.addTermButton}
+            variant="ghost"
             size="lg"
             onClick={handleAddExcludedTerm}
           >
-            Add Term to Exclude
+            Exclude Term
           </Button>
         </HStack>
       </Box>

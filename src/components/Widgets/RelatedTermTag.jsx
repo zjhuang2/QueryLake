@@ -11,27 +11,28 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 
 const RelatedTermTag = (props) => {
   const name = props.name;
+  const id = props.id;
 
-  const handleIncludeRelatedTerm = () => {
-    props.onIncludeRelatedTerm(name);
+  const handleAddPrimaryTerm = () => {
+    props.addPrimaryTerm(id);
   };
 
-  const handleExcludeRelatedTerm = () => {
-    props.onExcludeRelatedTerm(name);
+  const handleAddExcludedTerm = () => {
+    props.addExcludedTerm(id);
   };
 
   return (
     <div>
       <Menu>
         <MenuButton as={Button} rightIcon={<ChevronDownIcon />} margin={1}>
-          {props.name}
+          {name}
         </MenuButton>
         <MenuList>
-          <MenuItem onClick={handleIncludeRelatedTerm}>
-            <Text color="green">Include</Text>
+          <MenuItem onClick={handleAddPrimaryTerm}>
+            <Text color="green">Add to Primary</Text>
           </MenuItem>
-          <MenuItem onClick={handleExcludeRelatedTerm}>
-            <Text color="red">Exclude</Text>
+          <MenuItem onClick={handleAddExcludedTerm}>
+            <Text color="red">Add to Excluded</Text>
           </MenuItem>
         </MenuList>
       </Menu>

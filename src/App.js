@@ -2,8 +2,9 @@ import React from "react";
 import Header from "./components/Header";
 import Focus from "./components/Focus";
 import "@fontsource/manrope/700.css";
+import "@fontsource/manrope/800.css";
+import "@fontsource/manrope/600.css";
 import "@fontsource/manrope/500.css";
-import "@fontsource/manrope/300.css";
 
 import { ChakraProvider, Divider, extendTheme } from "@chakra-ui/react";
 import theme from "./theme";

@@ -1,12 +1,12 @@
 import { React, useState } from "react";
 import { Box, Heading } from "@chakra-ui/react";
-import QueryResults from "./QueryResults";
+import QueryResults from "./PrimaryTerms";
 import InputArea from "./InputArea";
-import QueryRec from "./QueryRec";
-import { getQueriesForElement } from "@testing-library/react";
+import PrimaryTerms from "./PrimaryTerms";
+import ExcludedTerms from "./ExcludedTerms";
 
 export const Immunity = () => {
-  const [includedTerms, setIncludedTerms] = useState([
+  const [primaryTerms, setPrimaryTerms] = useState([
     { id: "immunity", text: "Immunity" },
     { id: "immune-system", text: "Immune System" },
     { id: "virus", text: "Virus" },
@@ -29,28 +29,32 @@ export const Immunity = () => {
 
   return (
     <div className="Focus">
-      <Box maxW="100%" borderWidth="1px" margin={4} borderRadius="lg">
+      <Box
+        maxW="80%"
+        margin="1em auto"
+        rounded="2xl"
+        boxShadow="2xl"
+        padding={2}
+      >
         <Heading m={4}>Immunity</Heading>
         <InputArea
-          currentIncludedTerms={includedTerms}
+          currentPrimaryTerms={primaryTerms}
           currentExcludedTerms={excludedTerms}
-          onAddIncludeTerm={setIncludedTerms}
+          onAddPrimaryTerm={setPrimaryTerms}
           onAddExcludeTerm={setExcludedTerms}
           themeColor={colorScheme}
         />
-        <QueryResults
-          terms={includedTerms}
-          updateTerms={setIncludedTerms}
+        <PrimaryTerms
+          terms={primaryTerms}
+          updateTerms={setPrimaryTerms}
           themeColor={colorScheme}
-          termType="Included Terms"
         />
-        <QueryResults
+        <div>&nbsp;</div>
+        <ExcludedTerms
           terms={excludedTerms}
           updateTerms={setExcludedTerms}
           themeColor={colorScheme}
-          termType="Excluded Terms"
         />
-        <QueryRec themeColor={colorScheme} />
       </Box>
     </div>
   );
