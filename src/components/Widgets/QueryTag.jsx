@@ -18,12 +18,13 @@ import {
   Heading,
   Divider,
   Text,
-  STORAGE_KEY,
+  Box,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import RelatedTermTag from "./RelatedTermTag";
 import RelatedTermSelectedTag from "./RelatedTermSelectedTag";
 import { checkTargetForNewValues } from "framer-motion";
+import { some } from "lodash";
 
 const QueryTag = (props) => {
   const termName = props.name;
@@ -31,54 +32,82 @@ const QueryTag = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [associatedWords, setAssociatedWords] = useState([]);
+  const [similarWords, setSimilarWords] = useState([]);
+  const [relatedTerms, setRelatedTerms] = useState([]);
 
-  const relatedTermsBeforeChanges = associatedWords;
+  const relatedTermsBeforeChanges = relatedTerms;
 
   const deleteTag = () => {
     props.onDelete(props.id);
   };
-
-  // add to primary
+  // -------------- ASSOCIATED WORDS ------------------
   const addPrimary = (id) => {
-    const newTermsArray = associatedWords.map((word) =>
+    const newTermsArray = relatedTerms.map((word) =>
       word.id === id ? { ...word, type: "primary" } : word
     );
-    setAssociatedWords(newTermsArray);
+    setRelatedTerms(newTermsArray);
   };
 
-  // return pool
   const returnToPool = (id) => {
-    const newTermsArray = associatedWords.map((word) =>
+    const newTermsArray = relatedTerms.map((word) =>
       word.id === id ? { ...word, type: "na" } : word
     );
-    setAssociatedWords(newTermsArray);
+    setRelatedTerms(newTermsArray);
   };
 
-  // add to excluded
   const addExcluded = (id) => {
-    const newTermsArray = associatedWords.map((item) =>
-      item.id === id ? { ...item, type: "excluded" } : item
+    const newTermsArray = relatedTerms.map((word) =>
+      word.id === id ? { ...word, type: "excluded" } : word
     );
-    setAssociatedWords(newTermsArray);
+    setRelatedTerms(newTermsArray);
   };
 
+  // --------------- SHARED METHODS ----------------
   const cancelChanges = () => {
-    setAssociatedWords(relatedTermsBeforeChanges);
+    setRelatedTerms(relatedTermsBeforeChanges);
   };
 
   const applyChanges = () => {
-    const candidateTerms = associatedWords.filter(
+    const candidateTerms = relatedTerms.filter(
       (word) => word.type === "primary" || word.type === "excluded"
     );
+
     props.onApplyChanges([...props.terms, ...candidateTerms]);
   };
 
-  const url =
+  const assocURL =
     "https://api.wordassociations.net/associations/v1.0/json/search?apikey=20f6c56a-cc76-4fd6-8679-61d0ddd9b877";
-  const API = url + "&text=" + termName.toLowerCase() + "&lang=en";
+  const assocAPI = assocURL + "&text=" + termName.toLowerCase() + "&lang=en";
+
+  const similarURL =
+    "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/";
+  const similarAPI =
+    similarURL +
+    termName.toLowerCase() +
+    "?key=c0b50b2b-6383-4dee-bfce-8f738c367801";
+
+  const fetchSimilarWords = async () => {
+    let response = await fetch(similarAPI);
+    if (response.status === 200) {
+      let data = await response.json();
+      let wordsArray = await data[0].meta.syns[0].slice(0, 30);
+      wordsArray = wordsArray
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .map((word) => ({
+          id: word.trim().toLowerCase().replace(/\s+/g, "-"),
+          text: word,
+          type: "na",
+          relation: "similar",
+        }));
+      wordsArray.filter(
+        (word) => !props.terms.some((term) => term.id === word.id)
+      );
+      setSimilarWords(wordsArray);
+    }
+  };
 
   const fetchAssociatedWords = async () => {
-    let response = await fetch(API);
+    let response = await fetch(assocAPI);
     if (response.status === 200) {
       let data = await response.json();
       let wordsArray = await data.response[0].items;
@@ -87,16 +116,25 @@ const QueryTag = (props) => {
         id: word.item.trim().toLowerCase().replace(/\s+/g, "-"),
         type: "na",
       }));
-      // rename the key "item" to "text"
+      // reprocess the data
       const wordsArrayCleaned = wordsArray
         .map((word) => ({
           id: word.id,
           text: word.item,
-          type: word.type,
+          type: "na",
+          relation: "associated",
         }))
-        .filter((word) => !props.terms.some((term) => term.id === word.id));
+        .filter((word) => !props.terms.some((term) => term.id === word.id))
+        .filter(
+          (word) => !similarWords.some((term) => term.text === word.text)
+        );
       setAssociatedWords(wordsArrayCleaned);
     }
+  };
+
+  const mergeRelatedTerms = () => {
+    setRelatedTerms([...similarWords, ...associatedWords]);
+    console.log(relatedTerms);
   };
 
   return (
@@ -108,6 +146,7 @@ const QueryTag = (props) => {
           bgColor={themeColor.queryTagBg}
           color={themeColor.queryTagText}
           margin="1em 0.5em"
+          shadow="md"
         >
           {termName}
         </MenuButton>
@@ -118,7 +157,9 @@ const QueryTag = (props) => {
           <MenuItem
             onClick={() => {
               onOpen();
+              fetchSimilarWords();
               fetchAssociatedWords();
+              mergeRelatedTerms();
             }}
           >
             <Text>Find Related Terms</Text>
@@ -126,34 +167,63 @@ const QueryTag = (props) => {
         </MenuList>
       </Menu>
 
-      <Modal isOpen={isOpen} onClose={onClose} size="4xl">
+      <Modal isOpen={isOpen} onClose={onClose} size="6xl">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Related Terms Recommendations</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Wrap>
-              {associatedWords
-                .filter((word) => word.type === "na")
-                .map((word) => (
-                  <WrapItem>
-                    <RelatedTermTag
-                      name={word.text}
-                      id={word.id}
-                      type={word.type}
-                      addPrimaryTerm={addPrimary}
-                      addExcludedTerm={addExcluded}
-                    />
-                  </WrapItem>
-                ))}
-            </Wrap>
+            <Box shadow="xl" padding={5} rounded="xl">
+              <Heading fontSize="xl">Similar Terms / Synonyms</Heading>
+              <div>&nbsp;</div>
+              <Wrap>
+                {similarWords
+                  .filter(
+                    (word) => word.type === "na" && word.relation === "similar"
+                  )
+                  .map((word) => (
+                    <WrapItem>
+                      <RelatedTermTag
+                        name={word.text}
+                        id={word.id}
+                        type={word.type}
+                        addPrimaryTerm={addPrimary}
+                        addExcludedTerm={addExcluded}
+                      />
+                    </WrapItem>
+                  ))}
+              </Wrap>
+            </Box>
+            <div>&nbsp;</div>
+            <Box shadow="xl" padding={5} rounded="xl">
+              <Heading fontSize="xl">Associated Terms</Heading>
+              <div>&nbsp;</div>
+              <Wrap>
+                {associatedWords
+                  .filter(
+                    (word) =>
+                      word.type === "na" && word.relation === "associated"
+                  )
+                  .map((word) => (
+                    <WrapItem>
+                      <RelatedTermTag
+                        name={word.text}
+                        id={word.id}
+                        type={word.type}
+                        addPrimaryTerm={addPrimary}
+                        addExcludedTerm={addExcluded}
+                      />
+                    </WrapItem>
+                  ))}
+              </Wrap>
+            </Box>
 
             <div>&nbsp;</div>
 
             <Heading size="md">Primary</Heading>
             <Divider />
             <Wrap>
-              {associatedWords
+              {relatedTerms
                 .filter((word) => word.type === "primary")
                 .map((word) => (
                   <WrapItem>
@@ -172,7 +242,7 @@ const QueryTag = (props) => {
             <Heading size="md">Excluded</Heading>
             <Divider />
             <Wrap>
-              {associatedWords
+              {relatedTerms
                 .filter((word) => word.type === "excluded")
                 .map((word) => (
                   <WrapItem>
