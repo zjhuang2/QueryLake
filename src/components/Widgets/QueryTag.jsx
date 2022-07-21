@@ -203,7 +203,10 @@ const QueryTag = (props) => {
               colorScheme="green"
               br={3}
               margin={3}
-              onClick={applyChanges}
+              onClick={() => {
+                applyChanges();
+                onClose();
+              }}
             >
               Apply
             </Button>
