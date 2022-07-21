@@ -7,7 +7,7 @@ const PrimaryTerms = (props) => {
   const themeColor = props.themeColor;
 
   const deleteTerm = (id) => {
-    const newTermArray = terms.filter((term) => term.id !== id);
+    const newTermArray = props.terms.filter((term) => term.id !== id);
     props.updateTerms(newTermArray);
   };
 
