@@ -31,6 +31,8 @@ const ExcludedTerms = (props) => {
                   name={term.text}
                   onDelete={deleteTerm}
                   themeColor={themeColor}
+                  currentTerms={props.currentTerms}
+                  onApplyChanges={props.updateTerms}
                 />
               ))}
           </WrapItem>

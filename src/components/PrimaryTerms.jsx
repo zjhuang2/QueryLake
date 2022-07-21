@@ -11,10 +11,6 @@ const PrimaryTerms = (props) => {
     props.updateTerms(newTermArray);
   };
 
-  const updatePrimaryTerms = () => {
-    props.updatePrimary();
-  };
-
   return (
     <div>
       <Box boxShadow="lg" margin={4} rounded="xl">
@@ -34,7 +30,8 @@ const PrimaryTerms = (props) => {
                 name={term.text}
                 onDelete={deleteTerm}
                 themeColor={themeColor}
-                onApplyChanges={updatePrimaryTerms}
+                onApplyChanges={props.updateTerms}
+                currentTerms={props.currentTerms}
               />
             ))}
           </WrapItem>

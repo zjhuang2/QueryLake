@@ -18,6 +18,7 @@ import {
   Heading,
   Divider,
   Text,
+  STORAGE_KEY,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import RelatedTermTag from "./RelatedTermTag";
@@ -61,11 +62,15 @@ const QueryTag = (props) => {
     setAssociatedWords(newTermsArray);
   };
 
-  // TODO
-  const applyChanges = () => {};
-
   const cancelChanges = () => {
     setAssociatedWords(relatedTermsBeforeChanges);
+  };
+
+  const applyChanges = () => {
+    const candidateTerms = associatedWords.filter(
+      (word) => word.type === "primary" || word.type === "excluded"
+    );
+    props.onApplyChanges([...props.currentTerms, candidateTerms]);
   };
 
   const url =
@@ -82,24 +87,15 @@ const QueryTag = (props) => {
         id: word.item.trim().toLowerCase().replace(/\s+/g, "-"),
         type: "na",
       }));
-      setAssociatedWords(wordsArray);
+      // rename the key "item" to "text"
+      const wordsArrayCleaned = wordsArray.map((word) => ({
+        id: word.id,
+        text: word.item,
+        type: word.type,
+      }));
+      setAssociatedWords(wordsArrayCleaned);
     }
   };
-  // const fetchAssociatedWords = async () => {
-  //   const associatedWordsArray = fetch(API)
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error("HTTP error " + response.status);
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       return data.response[0].items;
-  //     });
-  //   //.then((data) => setAssociatedWords(data.response[0].items))
-
-  //   console.log(associatedWordsArray);
-  // };
 
   return (
     <div className="query">
@@ -140,7 +136,7 @@ const QueryTag = (props) => {
                 .map((word) => (
                   <WrapItem>
                     <RelatedTermTag
-                      name={word.item}
+                      name={word.text}
                       id={word.id}
                       type={word.type}
                       addPrimaryTerm={addPrimary}
@@ -161,7 +157,7 @@ const QueryTag = (props) => {
                   <WrapItem>
                     <RelatedTermSelectedTag
                       id={word.id}
-                      name={word.item}
+                      name={word.text}
                       currentRelatedTerms={associatedWords}
                       onReturnToPool={returnToPool}
                       tagColor="green"
@@ -180,7 +176,7 @@ const QueryTag = (props) => {
                   <WrapItem>
                     <RelatedTermSelectedTag
                       id={word.id}
-                      name={word.item}
+                      name={word.text}
                       currentRelatedTerms={associatedWords}
                       onReturnToPool={returnToPool}
                       tagColor="red"
