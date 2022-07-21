@@ -44,14 +44,12 @@ const Focus = (props) => {
           terms={terms}
           updateTerms={setTerms}
           themeColor={colorScheme}
-          currentTerms={terms}
           termType="Primary Terms"
         />
         <div>&nbsp;</div>
         <ExcludedTerms
           terms={terms}
           updateTerms={setTerms}
-          currentTerms={terms}
           themeColor={colorScheme}
           termType="Excluded Terms"
         />

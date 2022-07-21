@@ -31,7 +31,7 @@ const PrimaryTerms = (props) => {
                 onDelete={deleteTerm}
                 themeColor={themeColor}
                 onApplyChanges={props.updateTerms}
-                currentTerms={props.currentTerms}
+                terms={props.terms}
               />
             ))}
           </WrapItem>

@@ -31,7 +31,7 @@ const ExcludedTerms = (props) => {
                   name={term.text}
                   onDelete={deleteTerm}
                   themeColor={themeColor}
-                  currentTerms={props.currentTerms}
+                  terms={props.terms}
                   onApplyChanges={props.updateTerms}
                 />
               ))}

@@ -70,7 +70,7 @@ const QueryTag = (props) => {
     const candidateTerms = associatedWords.filter(
       (word) => word.type === "primary" || word.type === "excluded"
     );
-    props.onApplyChanges([...props.currentTerms, candidateTerms]);
+    props.onApplyChanges([...props.terms, ...candidateTerms]);
   };
 
   const url =
@@ -88,11 +88,13 @@ const QueryTag = (props) => {
         type: "na",
       }));
       // rename the key "item" to "text"
-      const wordsArrayCleaned = wordsArray.map((word) => ({
-        id: word.id,
-        text: word.item,
-        type: word.type,
-      }));
+      const wordsArrayCleaned = wordsArray
+        .map((word) => ({
+          id: word.id,
+          text: word.item,
+          type: word.type,
+        }))
+        .filter((word) => !props.terms.some((term) => term.id === word.id));
       setAssociatedWords(wordsArrayCleaned);
     }
   };
