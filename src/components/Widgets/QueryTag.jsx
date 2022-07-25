@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import {
   Menu,
   MenuButton,
@@ -25,10 +25,12 @@ import RelatedTermTag from "./RelatedTermTag";
 import RelatedTermSelectedTag from "./RelatedTermSelectedTag";
 import { checkTargetForNewValues } from "framer-motion";
 import { some } from "lodash";
+import { addDoc } from "firebase/firestore";
 
 const QueryTag = (props) => {
   const termName = props.name;
   const themeColor = props.themeColor;
+  const collectionRef = props.collectionRef;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [associatedWords, setAssociatedWords] = useState([]);
@@ -71,8 +73,14 @@ const QueryTag = (props) => {
     const candidateTerms = relatedTerms.filter(
       (word) => word.type === "primary" || word.type === "excluded"
     );
-
-    props.onApplyChanges([...props.terms, ...candidateTerms]);
+    candidateTerms.forEach((candidateTerm) => {
+      addDoc(collectionRef, {
+        text: candidateTerm.text,
+        type: candidateTerm.type,
+      })
+        .then((response) => console.log(response.id))
+        .catch((error) => console.log(error.message));
+    });
   };
 
   const assocURL =
@@ -132,10 +140,9 @@ const QueryTag = (props) => {
     }
   };
 
-  const mergeRelatedTerms = () => {
+  useEffect(() => {
     setRelatedTerms([...similarWords, ...associatedWords]);
-    console.log(relatedTerms);
-  };
+  }, [similarWords, associatedWords]);
 
   return (
     <div className="query">
@@ -145,8 +152,7 @@ const QueryTag = (props) => {
           rightIcon={<ChevronDownIcon />}
           bgColor={themeColor.queryTagBg}
           color={themeColor.queryTagText}
-          margin="1em 0.5em"
-          shadow="md"
+          margin="0.5em 0.5em"
         >
           {termName}
         </MenuButton>
@@ -159,7 +165,6 @@ const QueryTag = (props) => {
               onOpen();
               fetchSimilarWords();
               fetchAssociatedWords();
-              mergeRelatedTerms();
             }}
           >
             <Text>Find Related Terms</Text>
@@ -177,7 +182,7 @@ const QueryTag = (props) => {
               <Heading fontSize="xl">Similar Terms / Synonyms</Heading>
               <div>&nbsp;</div>
               <Wrap>
-                {similarWords
+                {relatedTerms
                   .filter(
                     (word) => word.type === "na" && word.relation === "similar"
                   )
@@ -199,7 +204,7 @@ const QueryTag = (props) => {
               <Heading fontSize="xl">Associated Terms</Heading>
               <div>&nbsp;</div>
               <Wrap>
-                {associatedWords
+                {relatedTerms
                   .filter(
                     (word) =>
                       word.type === "na" && word.relation === "associated"

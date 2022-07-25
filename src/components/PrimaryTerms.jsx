@@ -1,19 +1,28 @@
-import { React, useContext } from "react";
+import { React, useEffect, useState } from "react";
 import { Wrap, WrapItem, Heading, Box } from "@chakra-ui/react";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../lib/firebase-config";
 import QueryTag from "./Widgets/QueryTag";
 
 const PrimaryTerms = (props) => {
-  const terms = props.terms.filter((item) => item.type === "primary");
+  const primaryTerms = props.terms.filter(
+    (item) => item.data.type === "primary"
+  );
   const themeColor = props.themeColor;
+  const collectionRef = props.collectionRef;
 
   const deleteTerm = (id) => {
-    const newTermArray = props.terms.filter((term) => term.id !== id);
-    props.updateTerms(newTermArray);
+    const docRef = doc(db, "mentalperformance", id);
+    deleteDoc(docRef)
+      .then(() => {
+        console.log("Document deleted");
+      })
+      .catch((error) => console.log(error.message));
   };
 
   return (
     <div>
-      <Box boxShadow="lg" margin={4} rounded="xl">
+      <Box boxShadow="lg" margin={4} rounded="xl" padding={2}>
         <Heading
           fontSize="xl"
           margin="1.2em 0.2em 0 1.2em"
@@ -22,19 +31,20 @@ const PrimaryTerms = (props) => {
           Primary Terms
         </Heading>
 
-        <Wrap margin={4} spacing={4}>
-          <WrapItem>
-            {terms.map((term) => (
+        <Wrap margin={4} spacing={1}>
+          {primaryTerms.map((term) => (
+            <WrapItem>
               <QueryTag
                 id={term.id}
-                name={term.text}
+                name={term.data.text}
                 onDelete={deleteTerm}
                 themeColor={themeColor}
+                collectionRef={collectionRef}
                 onApplyChanges={props.updateTerms}
                 terms={props.terms}
               />
-            ))}
-          </WrapItem>
+            </WrapItem>
+          ))}
         </Wrap>
       </Box>
     </div>

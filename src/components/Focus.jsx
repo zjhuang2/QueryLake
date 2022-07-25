@@ -1,21 +1,36 @@
 import { React, useState, useEffect } from "react";
-import { Box, Heading, useRangeSlider, Button, Input } from "@chakra-ui/react";
-import QueryResults from "./PrimaryTerms";
+import {
+  Box,
+  Heading,
+  useRangeSlider,
+  Button,
+  Input,
+  MenuProvider,
+} from "@chakra-ui/react";
 import InputArea from "./InputArea";
-import { db } from "../firebase-config";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { db } from "../lib/firebase-config";
+import { collection, getDocs, addDoc, onSnapshot } from "firebase/firestore";
 import ExcludedTerms from "./ExcludedTerms";
 import PrimaryTerms from "./PrimaryTerms";
+import { mentalPerformanceCollectionRef } from "../lib/firestoreCollection";
 
 const Focus = (props) => {
-  const [terms, setTerms] = useState([
-    { id: "cognition", text: "Cognition", type: "primary" },
-    { id: "cognitive", text: "Cognitive", type: "primary" },
-    { id: "sports-psychology", text: "Sports Psychology", type: "primary" },
-    { id: "trump", text: "Trump", type: "excluded" },
-    { id: "biden", text: "Biden", type: "excluded" },
-    { id: "roe-v-wade", text: "Roe v Wade", type: "excluded" },
-  ]);
+  const [terms, setTerms] = useState([]);
+  const collectionRef = mentalPerformanceCollectionRef;
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      mentalPerformanceCollectionRef,
+      (snapshot) => {
+        setTerms(
+          snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
+        );
+      }
+    );
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const colorScheme = {
     border: "orange.100",
@@ -39,12 +54,16 @@ const Focus = (props) => {
           currentTerms={terms}
           onUpdateTerms={setTerms}
           themeColor={colorScheme}
+          collectionRef={collectionRef}
+          collectionName="mentalperformance"
         />
         <PrimaryTerms
           terms={terms}
           updateTerms={setTerms}
           themeColor={colorScheme}
           termType="Primary Terms"
+          collectionRef={collectionRef}
+          collectionName="mentalperformance"
         />
         <div>&nbsp;</div>
         <ExcludedTerms
@@ -52,6 +71,8 @@ const Focus = (props) => {
           updateTerms={setTerms}
           themeColor={colorScheme}
           termType="Excluded Terms"
+          collectionRef={collectionRef}
+          collectionName="mentalperformance"
         />
       </Box>
     </div>

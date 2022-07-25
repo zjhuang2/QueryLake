@@ -19,11 +19,11 @@ const App = () => {
         <div>&nbsp;</div>
         <Focus />
         <div>&nbsp;</div>
-        <Immunity />
+        {/* <Immunity />
         <div>&nbsp;</div>
         <Divider orientation="horizontal" />
         <div>&nbsp;</div>
-        <ExcludedTermRec />
+        <ExcludedTermRec /> */}
       </div>
     </ChakraProvider>
   );
