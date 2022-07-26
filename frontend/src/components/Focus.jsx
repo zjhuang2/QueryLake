@@ -33,11 +33,11 @@ const Focus = (props) => {
   }, []);
 
   const colorScheme = {
-    border: "orange.100",
-    addTermButton: "orange.700",
-    queryTagBg: "orange.100",
-    queryTagText: "orange.700",
-    generateButton: "orange",
+    border: "blue.100",
+    addTermButton: "blue.700",
+    queryTagBg: "blue.500",
+    queryTagText: "white",
+    generateButton: "blue",
   };
 
   return (

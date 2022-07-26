@@ -10,6 +10,7 @@ import { ChakraProvider, Divider, extendTheme } from "@chakra-ui/react";
 import theme from "./theme";
 import { Immunity } from "./components/Immunity";
 import ExcludedTermRec from "./components/ExcludedTermRec";
+import TwitterTrends from "./components/TwitterTrends";
 
 const App = () => {
   return (
@@ -18,12 +19,14 @@ const App = () => {
         <Header />
         <div>&nbsp;</div>
         <Focus />
-        <div>&nbsp;</div>
-        {/* <Immunity />
+        {/* <div>&nbsp;</div>
+        <Immunity />
         <div>&nbsp;</div>
         <Divider orientation="horizontal" />
         <div>&nbsp;</div>
         <ExcludedTermRec /> */}
+        <div>&nbsp;</div>
+        <TwitterTrends />
       </div>
     </ChakraProvider>
   );

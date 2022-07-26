@@ -22,16 +22,12 @@ const PrimaryTerms = (props) => {
 
   return (
     <div>
-      <Box boxShadow="lg" margin={4} rounded="xl" padding={2}>
-        <Heading
-          fontSize="xl"
-          margin="1.2em 0.2em 0 1.2em"
-          color={themeColor.queryTagText}
-        >
+      <Box boxShadow="lg" margin={4} rounded="xl">
+        <Heading fontSize="xl" margin="2em 0 0 1.5em" color="blackAlpha.800">
           Primary Terms
         </Heading>
 
-        <Wrap margin={4} spacing={1}>
+        <Wrap margin={2} spacing={1} padding={4}>
           {primaryTerms.map((term) => (
             <WrapItem>
               <QueryTag
