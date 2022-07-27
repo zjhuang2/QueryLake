@@ -7,11 +7,10 @@ import {
   Input,
   MenuProvider,
 } from "@chakra-ui/react";
-import InputArea from "./InputArea";
-import { db } from "../lib/firebase-config";
-import { collection, getDocs, addDoc, onSnapshot } from "firebase/firestore";
-import ExcludedTerms from "./ExcludedTerms";
-import PrimaryTerms from "./PrimaryTerms";
+import InputArea from "../components/InputArea";
+import { onSnapshot } from "firebase/firestore";
+import ExcludedTerms from "../components/ExcludedTerms";
+import PrimaryTerms from "../components/PrimaryTerms";
 import { mentalPerformanceCollectionRef } from "../lib/firestoreCollection";
 
 const Focus = (props) => {

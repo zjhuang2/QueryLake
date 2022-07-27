@@ -5,3 +5,5 @@ export const mentalPerformanceCollectionRef = collection(
   db,
   "mentalperformance"
 );
+
+export const immunityRef = collection(db, "immunity");

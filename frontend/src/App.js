@@ -1,16 +1,24 @@
 import React from "react";
 import Header from "./components/Header";
-import Focus from "./components/Focus";
+import Focus from "./pages/Focus";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import TwitterTrends from "./pages/TwitterTrends";
 import "@fontsource/manrope/700.css";
 import "@fontsource/manrope/800.css";
 import "@fontsource/manrope/600.css";
 import "@fontsource/manrope/500.css";
+import { Route, Routes } from "react-router-dom";
 
-import { ChakraProvider, Divider, extendTheme } from "@chakra-ui/react";
+import {
+  BreadcrumbLink,
+  ChakraProvider,
+  Divider,
+  extendTheme,
+} from "@chakra-ui/react";
 import theme from "./theme";
-import { Immunity } from "./components/Immunity";
-import ExcludedTermRec from "./components/ExcludedTermRec";
-import TwitterTrends from "./components/TwitterTrends";
+import { Immunity } from "./pages/Immunity";
+import Categories from "./pages/Categories";
 
 const App = () => {
   return (
@@ -18,15 +26,24 @@ const App = () => {
       <div className="App">
         <Header />
         <div>&nbsp;</div>
-        <Focus />
+        {/* <Navbar /> */}
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/focus" element={<Focus />} />
+            <Route path="/immunity" element={<Immunity />} />
+            <Route path="/twitter-trends" element={<TwitterTrends />} />
+          </Routes>
+        </div>
         {/* <div>&nbsp;</div>
+        <Focus />
+        <div>&nbsp;</div>
         <Immunity />
         <div>&nbsp;</div>
         <Divider orientation="horizontal" />
         <div>&nbsp;</div>
-        <ExcludedTermRec /> */}
-        <div>&nbsp;</div>
-        <TwitterTrends />
+        <TwitterTrends /> */}
       </div>
     </ChakraProvider>
   );

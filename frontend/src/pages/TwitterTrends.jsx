@@ -1,13 +1,8 @@
 import React from "react";
-import { FaCrosshairs } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import {
   Box,
   Heading,
-  useRangeSlider,
-  Button,
-  Input,
-  MenuProvider,
   Wrap,
   WrapItem,
   Select,
@@ -64,6 +59,8 @@ const TwitterTrends = () => {
           <option value="2459115">New York, USA</option>
           <option value="2442047">Los Angeles, USA</option>
           <option value="1105779">Sydney, Australia</option>
+          <option value="23424977">United States</option>
+          <option value="23424982">Venezuela</option>
         </Select>
         <Wrap margin={2} spacing={1} padding={4}>
           {trends.map((trend, index) => (
