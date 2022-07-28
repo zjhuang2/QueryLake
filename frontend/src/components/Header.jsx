@@ -15,6 +15,7 @@ import {
   PopoverContent,
   Link,
   Button,
+  Fade,
 } from "@chakra-ui/react";
 
 import { Link as ReactLink } from "react-router-dom";
@@ -36,7 +37,7 @@ const Header = () => {
           </Link>
         </Flex>
       </Container>
-      <Container bgColor="blackAlpha.200" maxW="100%" shadow="md">
+      <Container bgColor="blackAlpha.200" maxW="100%" shadow="md" centerContent>
         <Flex>
           <Link as={ReactLink} to="/">
             <Button
@@ -76,6 +77,7 @@ const Header = () => {
           </Link>
         </Flex>
       </Container>
+
       {/* <Box maxW="100%" bg="blackAlpha.100" color="red.500" shadow="lg">
         <Flex>
           <Text fontSize="5xl" fontWeight="bold" margin={2}>

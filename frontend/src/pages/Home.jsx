@@ -49,7 +49,7 @@ const Home = () => {
               rounded="2xl"
               margin={4}
             >
-              View Categories
+              Browse Query Gallary
             </Button>
           </ReactLink>
 
