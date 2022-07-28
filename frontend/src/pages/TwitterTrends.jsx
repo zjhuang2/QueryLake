@@ -21,7 +21,7 @@ const TwitterTrends = () => {
 
   const getTrends = () => {
     axios
-      .get("/api/trends", {
+      .get("https://us-central1-querylake.cloudfunctions.net/twitter_api", {
         params: {
           woeid: woeid,
         },
@@ -29,12 +29,9 @@ const TwitterTrends = () => {
       .then((response) => {
         // console.log(response.data);
         setTrends(response.data[0].trends);
+        console.log(response.data[0].trends);
       })
       .catch((error) => console.log(error.message));
-  };
-
-  const handleLocation = () => {
-    alert("handle location");
   };
 
   return (
