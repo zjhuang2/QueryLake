@@ -10,9 +10,10 @@ const PrimaryTerms = (props) => {
   );
   const themeColor = props.themeColor;
   const collectionRef = props.collectionRef;
+  const collectionName = props.collectionName;
 
   const deleteTerm = (id) => {
-    const docRef = doc(db, "mentalperformance", id);
+    const docRef = doc(db, collectionName, id);
     deleteDoc(docRef)
       .then(() => {
         console.log("Document deleted");

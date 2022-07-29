@@ -3,3 +3,4 @@ backend/
 functions/
 QueryLake.code-workspace
 TwitterAPIKey.txt
+.firebase/
