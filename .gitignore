@@ -2,3 +2,4 @@ node_modules
 backend/
 functions/
 QueryLake.code-workspace
+TwitterAPIKey.txt
