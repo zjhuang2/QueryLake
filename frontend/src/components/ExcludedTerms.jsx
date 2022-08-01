@@ -1,4 +1,4 @@
-import { React, useContext } from "react";
+import { React } from "react";
 import { Wrap, WrapItem, Heading, Box } from "@chakra-ui/react";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../lib/firebase-config";

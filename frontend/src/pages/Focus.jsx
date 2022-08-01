@@ -1,12 +1,5 @@
 import { React, useState, useEffect } from "react";
-import {
-  Box,
-  Heading,
-  useRangeSlider,
-  Button,
-  Input,
-  MenuProvider,
-} from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import InputArea from "../components/InputArea";
 import { onSnapshot } from "firebase/firestore";
 import ExcludedTerms from "../components/ExcludedTerms";

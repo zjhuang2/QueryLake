@@ -1,15 +1,5 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import {
-  Button,
-  Text,
-  Heading,
-  Container,
-  Flex,
-  useToast,
-  Box,
-  Wrap,
-} from "@chakra-ui/react";
+import React from "react";
+import { Button, Text, Heading, Flex, useToast, Box } from "@chakra-ui/react";
 
 const Clipboard = (props) => {
   const toast = useToast();

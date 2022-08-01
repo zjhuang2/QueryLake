@@ -1,21 +1,12 @@
 import React from "react";
 import {
-  ChakraProvider,
   Text,
-  Heading,
   Container,
   Flex,
   Tag,
   TagLabel,
-  Box,
-  useColorModeValue,
-  Stack,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
   Link,
   Button,
-  Fade,
   Divider,
 } from "@chakra-ui/react";
 
