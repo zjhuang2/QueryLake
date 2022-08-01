@@ -12,6 +12,7 @@ import { onSnapshot } from "firebase/firestore";
 import ExcludedTerms from "../components/ExcludedTerms";
 import PrimaryTerms from "../components/PrimaryTerms";
 import { mentalPerformanceCollectionRef } from "../lib/firestoreCollection";
+import Clipboard from "../components/Clipboard";
 
 const Focus = (props) => {
   const [terms, setTerms] = useState([]);
@@ -73,6 +74,15 @@ const Focus = (props) => {
           collectionRef={collectionRef}
           collectionName="mentalperformance"
         />
+      </Box>
+      <Box
+        maxW="80%"
+        margin="1em auto"
+        rounded="2xl"
+        boxShadow="2xl"
+        padding={10}
+      >
+        <Clipboard terms={terms} />
       </Box>
     </div>
   );

@@ -53,9 +53,12 @@ const TwitterTrends = () => {
           onChange={(e) => setWoeid(e.target.value)}
         >
           <option value="1">Worldwide</option>
-          <option value="2459115">New York, USA</option>
-          <option value="2442047">Los Angeles, USA</option>
-          <option value="1105779">Sydney, Australia</option>
+          <option value="23424748">Australia</option>
+          <option value="23424757">Belgium</option>
+          <option value="23424768">Brazil</option>
+          <option value="23424794">Canada</option>
+          <option value="23424856">Japan</option>
+          <option value="23424950">Spain</option>
           <option value="23424977">United States</option>
           <option value="23424982">Venezuela</option>
         </Select>

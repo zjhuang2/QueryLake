@@ -16,6 +16,7 @@ import {
   Link,
   Button,
   Fade,
+  Divider,
 } from "@chakra-ui/react";
 
 import { Link as ReactLink } from "react-router-dom";
@@ -23,7 +24,7 @@ import { Link as ReactLink } from "react-router-dom";
 const Header = () => {
   return (
     <div className="header">
-      <Container maxW="100%" bg="blackAlpha.100" color="red.500" shadow="lg">
+      <Container maxW="100%" bg="blackAlpha.50" color="red.500" shadow="lg">
         <Flex>
           <Link as={ReactLink} to="/">
             <Flex>
@@ -37,16 +38,15 @@ const Header = () => {
           </Link>
         </Flex>
       </Container>
-      <Container bgColor="blackAlpha.200" maxW="100%" shadow="md" centerContent>
+      <Container maxW="100%" centerContent>
         <Flex>
           <Link as={ReactLink} to="/">
             <Button
               margin={4}
               fontWeight="bold"
               fontSize="xl"
-              bgColor="red.500"
-              color="white"
-              width="15em"
+              width="auto"
+              color="blackAlpha.700"
             >
               HOME
             </Button>
@@ -56,9 +56,8 @@ const Header = () => {
               margin={4}
               fontWeight="bold"
               fontSize="xl"
-              bgColor="red.500"
-              color="white"
-              width="15em"
+              width="auto"
+              color="blackAlpha.700"
             >
               Browse Query Gallary
             </Button>
@@ -68,14 +67,14 @@ const Header = () => {
               margin={4}
               fontWeight="bold"
               fontSize="xl"
-              bgColor="red.500"
-              color="white"
-              width="15em"
+              width="auto"
+              color="blackAlpha.700"
             >
               Global Twitter Trends
             </Button>
           </Link>
         </Flex>
+        <Divider orientation="horizontal" />
       </Container>
 
       {/* <Box maxW="100%" bg="blackAlpha.100" color="red.500" shadow="lg">

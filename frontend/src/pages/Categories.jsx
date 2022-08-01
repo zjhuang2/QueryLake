@@ -7,6 +7,7 @@ import {
   Button,
   Center,
   Image,
+  Flex,
 } from "@chakra-ui/react";
 import { Link as ReactLink } from "react-router-dom";
 import "./CategoryStyle.css";
@@ -20,9 +21,9 @@ const Categories = () => {
         </Text>
       </Box>
       <Box>
-        <SimpleGrid columns={3} spacing={10} margin={20}>
+        <SimpleGrid columns={2} spacing={10} margin={20}>
           <ReactLink to="/focus">
-            <Box
+            <Flex
               border="solid 1px"
               borderColor="blackAlpha.500"
               rounded="xl"
@@ -32,20 +33,20 @@ const Categories = () => {
               <Image
                 src="images/focus_box.jpg"
                 object-fit="cover"
-                w={500}
-                h={200}
+                w={200}
+                h={150}
               />
 
-              <Box display="flex" alignItems="baseline" padding={4}>
+              <Center padding={8}>
                 <Text fontSize="2xl" fontWeight="bold" color="blackAlpha.700">
                   Mental Performance
                 </Text>
-              </Box>
-            </Box>
+              </Center>
+            </Flex>
           </ReactLink>
 
           <ReactLink to="/immunity">
-            <Box
+            <Flex
               border="solid 1px"
               borderColor="blackAlpha.500"
               rounded="xl"
@@ -55,15 +56,37 @@ const Categories = () => {
               <Image
                 src="images/immunity_box.jpg"
                 objectFit="cover"
-                w={500}
-                h={200}
+                w={200}
+                h={150}
               />
-              <Box display="flex" alignItems="baseline" padding={4}>
+              <Center padding={8}>
                 <Text fontSize="2xl" fontWeight="bold" color="blackAlpha.700">
                   Immunity
                 </Text>
-              </Box>
-            </Box>
+              </Center>
+            </Flex>
+          </ReactLink>
+
+          <ReactLink to="/relaxation">
+            <Flex
+              border="solid 1px"
+              borderColor="blackAlpha.500"
+              rounded="xl"
+              className="gallaryItem"
+              overflow="hidden"
+            >
+              <Image
+                src="images/relax_box.jpg"
+                objectFit="cover"
+                w={200}
+                h={150}
+              />
+              <Center padding={8}>
+                <Text fontSize="2xl" fontWeight="bold" color="blackAlpha.700">
+                  Relaxation
+                </Text>
+              </Center>
+            </Flex>
           </ReactLink>
         </SimpleGrid>
       </Box>

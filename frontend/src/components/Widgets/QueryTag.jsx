@@ -150,7 +150,7 @@ const QueryTag = (props) => {
         <MenuButton
           as={Button}
           rightIcon={<ChevronDownIcon />}
-          bgColor={themeColor.queryTagBg}
+          bgColor={props.tagBgColor}
           color={themeColor.queryTagText}
           margin="0.25em 0.25em"
           shadow="lg"

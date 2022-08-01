@@ -19,6 +19,7 @@ import {
 import theme from "./theme";
 import { Immunity } from "./pages/Immunity";
 import Categories from "./pages/Categories";
+import { Relaxation } from "./pages/Relaxation";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
             <Route path="/categories" element={<Categories />} />
             <Route path="/focus" element={<Focus />} />
             <Route path="/immunity" element={<Immunity />} />
+            <Route path="/relaxation" element={<Relaxation />} />
             <Route path="/twitter-trends" element={<TwitterTrends />} />
           </Routes>
         </div>

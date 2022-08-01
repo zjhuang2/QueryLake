@@ -35,6 +35,7 @@ const PrimaryTerms = (props) => {
                 id={term.id}
                 name={term.data.text}
                 onDelete={deleteTerm}
+                tagBgColor="green.500"
                 themeColor={themeColor}
                 collectionRef={collectionRef}
                 onApplyChanges={props.updateTerms}

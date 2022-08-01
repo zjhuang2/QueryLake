@@ -34,6 +34,7 @@ const ExcludedTerms = (props) => {
                   id={term.id}
                   name={term.data.text}
                   onDelete={deleteTerm}
+                  tagBgColor="red.400"
                   themeColor={themeColor}
                   terms={props.terms}
                   collectionRef={collectionRef}

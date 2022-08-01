@@ -4,15 +4,15 @@ import InputArea from "../components/InputArea";
 import PrimaryTerms from "../components/PrimaryTerms";
 import ExcludedTerms from "../components/ExcludedTerms";
 import Clipboard from "../components/Clipboard";
-import { immunityRef } from "../lib/firestoreCollection";
+import { relaxationRef } from "../lib/firestoreCollection";
 import { onSnapshot } from "firebase/firestore";
 
-export const Immunity = () => {
+export const Relaxation = () => {
   const [terms, setTerms] = useState([]);
-  const collectionRef = immunityRef;
+  const collectionRef = relaxationRef;
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(immunityRef, (snapshot) => {
+    const unsubscribe = onSnapshot(relaxationRef, (snapshot) => {
       setTerms(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })));
     });
     return () => {
@@ -29,7 +29,7 @@ export const Immunity = () => {
   };
 
   return (
-    <div className="Immunity">
+    <div className="Relaxation">
       <Box
         maxW="80%"
         margin="1em auto"
@@ -37,13 +37,13 @@ export const Immunity = () => {
         boxShadow="2xl"
         padding={2}
       >
-        <Heading m={4}>Immunity</Heading>
+        <Heading m={4}>Relaxation</Heading>
         <InputArea
           currentTerms={terms}
           onUpdateTerms={setTerms}
           themeColor={colorScheme}
           collectionRef={collectionRef}
-          collectionName="immunity"
+          collectionName="relaxation"
         />
         <PrimaryTerms
           terms={terms}
@@ -51,7 +51,7 @@ export const Immunity = () => {
           themeColor={colorScheme}
           termType="Primary Terms"
           collectionRef={collectionRef}
-          collectionName="immunity"
+          collectionName="relaxation"
         />
         <div>&nbsp;</div>
         <ExcludedTerms
@@ -60,7 +60,7 @@ export const Immunity = () => {
           themeColor={colorScheme}
           termType="Excluded Terms"
           collectionRef={collectionRef}
-          collectionName="immunity"
+          collectionName="relaxation"
         />
       </Box>
       <Box
