@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <div>
       <Box
-        maxW="90%"
+        maxW="80%"
         margin="3em auto"
         rounded="2xl"
         padding={12}
@@ -24,56 +24,60 @@ const Home = () => {
         color="red.500"
       >
         <Text
-          fontSize="8xl"
+          fontSize="7xl"
           fontWeight="extrabold"
           bgGradient="linear(to-l, #F56565, #805AD5)"
           bgClip="text"
+          textAlign="center"
         >
           Introducing KOuery.
         </Text>
 
         <div>&nbsp;</div>
-        <Heading color="blackAlpha.700">
-          A Query curation & optimzation tool designed for Coca-Cola's Technical
-          Consumer research work.
+        <Heading color="blackAlpha.700" textAlign="center">
+          A Query curation & optimzation application designed for Coca-Cola's
+          Technical Consumer research work.
         </Heading>
         <div>&nbsp;</div>
-        <SimpleGrid columns={2} spacing={2} padding={10}>
-          <ReactLink to="/categories">
-            <Button
-              height={20}
-              width="80%"
-              bgGradient="linear(to-l, #F56565, #805AD5)"
-              color="white"
-              fontSize="2xl"
-              rounded="2xl"
-              margin={4}
-            >
-              Browse Query Gallary
-            </Button>
-          </ReactLink>
+        <Container maxW="70%" centerContent>
+          <Flex>
+            <ReactLink to="/categories">
+              <Button
+                height={20}
+                width="auto"
+                bgGradient="linear(to-l, #F56565, #805AD5)"
+                color="white"
+                fontSize="2xl"
+                rounded="2xl"
+                margin={8}
+              >
+                Browse Query Gallary
+              </Button>
+            </ReactLink>
 
-          <ReactLink to="/twitter-trends">
-            <Button
-              height={20}
-              width="80%"
-              bgGradient="linear(to-l, teal.500, green.500)"
-              color="white"
-              fontSize="2xl"
-              rounded="2xl"
-              margin={4}
-            >
-              View Real-Time Trends
-            </Button>
-          </ReactLink>
-        </SimpleGrid>
+            <ReactLink to="/twitter-trends">
+              <Button
+                height={20}
+                width="auto"
+                bgGradient="linear(to-l, teal.500, green.500)"
+                color="white"
+                fontSize="2xl"
+                rounded="2xl"
+                margin={8}
+              >
+                View Real-Time Trends
+              </Button>
+            </ReactLink>
+          </Flex>
+        </Container>
       </Box>
       <Divider orientation="horizontal" maxW="100%" center />
-      <Container margin={12} maxW="90%">
-        <Heading as="h1" size="2xl">
-          Features
-        </Heading>
-        <SimpleGrid columns={2} spacing={2}>
+
+      <Container maxW="90%" centerContent>
+        <Box textAlign="center" marginTop={12} marginBottom={5}>
+          <Heading size="2xl">Features</Heading>
+        </Box>
+        <SimpleGrid columns={2} spacing={2} maxW="90%" marginLeft="4%">
           <Box
             maxW="90%"
             margin="1em 0"
@@ -100,7 +104,7 @@ const Home = () => {
             bgColor="pink.400"
             color="white"
           >
-            <Heading size="xl">Synonyms/Similar Words Generator.</Heading>
+            <Heading size="xl">Dictionary-Sourced Similar Words.</Heading>
             <div>&nbsp;</div>
             <Heading size="md">
               KOuery integrates the Merriam-Webster Dictionary,enabling access

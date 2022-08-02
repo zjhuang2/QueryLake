@@ -20,6 +20,9 @@ import theme from "./theme";
 import { Immunity } from "./pages/Immunity";
 import Categories from "./pages/Categories";
 import { Relaxation } from "./pages/Relaxation";
+import { DigestiveHealth } from "./pages/DigestiveHealth";
+import { Detox } from "./pages/Detox";
+import SustainedEnergy from "./pages/SustainedEnergy";
 
 const App = () => {
   return (
@@ -27,7 +30,6 @@ const App = () => {
       <div className="App">
         <Header />
         <div>&nbsp;</div>
-        {/* <Navbar /> */}
         <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -36,16 +38,11 @@ const App = () => {
             <Route path="/immunity" element={<Immunity />} />
             <Route path="/relaxation" element={<Relaxation />} />
             <Route path="/twitter-trends" element={<TwitterTrends />} />
+            <Route path="/digestive-health" element={<DigestiveHealth />} />
+            <Route path="/detox" element={<Detox />} />
+            <Route path="/sustained-energy" element={<SustainedEnergy />} />
           </Routes>
         </div>
-        {/* <div>&nbsp;</div>
-        <Focus />
-        <div>&nbsp;</div>
-        <Immunity />
-        <div>&nbsp;</div>
-        <Divider orientation="horizontal" />
-        <div>&nbsp;</div>
-        <TwitterTrends /> */}
       </div>
     </ChakraProvider>
   );

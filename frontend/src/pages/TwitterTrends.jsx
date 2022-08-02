@@ -9,6 +9,7 @@ import {
   Tag,
   TagLabel,
 } from "@chakra-ui/react";
+import TrendsClipboard from "../components/TrendsClipboard";
 
 const TwitterTrends = () => {
   const [trends, setTrends] = useState([]);
@@ -76,21 +77,16 @@ const TwitterTrends = () => {
             </WrapItem>
           ))}
         </Wrap>
-        <div>
-          {/* <ul>
-            {trends.map((trend, index) => (
-              <li key={index}>
-                <a href={trend.url}>{trend.name}</a>
-                {trend.tweet_volume && (
-                  <span className="tweet-volume">{trend.tweet_volume}</span>
-                )}
-              </li>
-            ))}
-          </ul> */}
-        </div>
       </Box>
-
-      {/* <div className="content">{listTrends}</div> */}
+      <Box
+        maxW="80%"
+        margin="3em auto"
+        rounded="2xl"
+        boxShadow="2xl"
+        padding={10}
+      >
+        <TrendsClipboard terms={trends} />
+      </Box>
     </div>
   );
 };

@@ -15,7 +15,7 @@ import { Link as ReactLink } from "react-router-dom";
 const Header = () => {
   return (
     <div className="header">
-      <Container maxW="100%" bg="blackAlpha.50" color="red.500" shadow="lg">
+      <Container maxW="100%" color="red.500" centerContent>
         <Flex>
           <Link as={ReactLink} to="/">
             <Flex>
@@ -31,31 +31,35 @@ const Header = () => {
       </Container>
       <Container maxW="100%" centerContent>
         <Flex>
-          <Link as={ReactLink} to="/">
+          <ReactLink to="/">
             <Button
               margin={4}
+              variant="ghost"
+              fontWeight="bold"
+              fontSize="xl"
+              width="auto"
+              color="blackAlpha.700"
+              textDecoration="none"
+            >
+              Home Page
+            </Button>
+          </ReactLink>
+          <ReactLink as={ReactLink} to="/categories">
+            <Button
+              margin={4}
+              variant="ghost"
               fontWeight="bold"
               fontSize="xl"
               width="auto"
               color="blackAlpha.700"
             >
-              HOME
+              Query Gallary
             </Button>
-          </Link>
-          <Link as={ReactLink} to="/categories">
+          </ReactLink>
+          <ReactLink as={ReactLink} to="/twitter-trends">
             <Button
               margin={4}
-              fontWeight="bold"
-              fontSize="xl"
-              width="auto"
-              color="blackAlpha.700"
-            >
-              Browse Query Gallary
-            </Button>
-          </Link>
-          <Link as={ReactLink} to="/twitter-trends">
-            <Button
-              margin={4}
+              variant="ghost"
               fontWeight="bold"
               fontSize="xl"
               width="auto"
@@ -63,7 +67,7 @@ const Header = () => {
             >
               Global Twitter Trends
             </Button>
-          </Link>
+          </ReactLink>
         </Flex>
         <Divider orientation="horizontal" />
       </Container>

@@ -7,10 +7,12 @@ import {
   Button,
   Center,
   Image,
+  Container,
   Flex,
 } from "@chakra-ui/react";
 import { Link as ReactLink } from "react-router-dom";
 import "./CategoryStyle.css";
+import GallaryItem from "../components/GallaryItem";
 
 const Categories = () => {
   return (
@@ -20,76 +22,49 @@ const Categories = () => {
           Query Gallary
         </Text>
       </Box>
-      <Box>
-        <SimpleGrid columns={2} spacing={10} margin={20}>
-          <ReactLink to="/focus">
-            <Flex
-              border="solid 1px"
-              borderColor="blackAlpha.500"
-              rounded="xl"
-              className="gallaryItem"
-              overflow="hidden"
-            >
-              <Image
-                src="images/focus_box.jpg"
-                object-fit="cover"
-                w={200}
-                h={150}
-              />
 
-              <Center padding={8}>
-                <Text fontSize="2xl" fontWeight="bold" color="blackAlpha.700">
-                  Mental Performance
-                </Text>
-              </Center>
-            </Flex>
-          </ReactLink>
-
-          <ReactLink to="/immunity">
-            <Flex
-              border="solid 1px"
-              borderColor="blackAlpha.500"
-              rounded="xl"
-              className="gallaryItem"
-              overflow="hidden"
-            >
-              <Image
-                src="images/immunity_box.jpg"
-                objectFit="cover"
-                w={200}
-                h={150}
-              />
-              <Center padding={8}>
-                <Text fontSize="2xl" fontWeight="bold" color="blackAlpha.700">
-                  Immunity
-                </Text>
-              </Center>
-            </Flex>
-          </ReactLink>
-
-          <ReactLink to="/relaxation">
-            <Flex
-              border="solid 1px"
-              borderColor="blackAlpha.500"
-              rounded="xl"
-              className="gallaryItem"
-              overflow="hidden"
-            >
-              <Image
-                src="images/relax_box.jpg"
-                objectFit="cover"
-                w={200}
-                h={150}
-              />
-              <Center padding={8}>
-                <Text fontSize="2xl" fontWeight="bold" color="blackAlpha.700">
-                  Relaxation
-                </Text>
-              </Center>
-            </Flex>
-          </ReactLink>
+      <Container centerContent maxW="90%">
+        <Heading
+          size="2xl"
+          color="blackAlpha.500"
+          marginTop={10}
+          marginBottom={8}
+        >
+          Functional Wellness Narratives
+        </Heading>
+        <SimpleGrid columns={2} spacing={10}>
+          <GallaryItem
+            path="/focus"
+            imgSource="images/focus_box.jpg"
+            name="Mental Performance"
+          />
+          <GallaryItem
+            path="/immunity"
+            imgSource="images/immunity_box.jpg"
+            name="Immunity"
+          />
+          <GallaryItem
+            path="/relaxation"
+            imgSource="images/relax_box.jpg"
+            name="Relaxation"
+          />
+          <GallaryItem
+            path="/digestive-health"
+            imgSource="images/digestive_box.jpg"
+            name="Digestive Health"
+          />
+          <GallaryItem
+            path="/detox"
+            imgSource="images/detox_box.jpg"
+            name="Detox"
+          />
+          <GallaryItem
+            path="/sustained-energy"
+            imgSource="images/energy_box.jpg"
+            name="Natural Sustained Energy"
+          />
         </SimpleGrid>
-      </Box>
+      </Container>
     </div>
   );
 };

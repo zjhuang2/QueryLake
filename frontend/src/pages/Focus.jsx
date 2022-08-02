@@ -70,7 +70,7 @@ const Focus = (props) => {
       </Box>
       <Box
         maxW="80%"
-        margin="1em auto"
+        margin="3em auto"
         rounded="2xl"
         boxShadow="2xl"
         padding={10}

@@ -4,15 +4,15 @@ import InputArea from "../components/InputArea";
 import PrimaryTerms from "../components/PrimaryTerms";
 import ExcludedTerms from "../components/ExcludedTerms";
 import Clipboard from "../components/Clipboard";
-import { immunityRef } from "../lib/firestoreCollection";
+import { sustainedEnergyRef } from "../lib/firestoreCollection";
 import { onSnapshot } from "firebase/firestore";
 
-export const Immunity = () => {
+export const SustainedEnergy = () => {
   const [terms, setTerms] = useState([]);
-  const collectionRef = immunityRef;
+  const collectionRef = sustainedEnergyRef;
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(immunityRef, (snapshot) => {
+    const unsubscribe = onSnapshot(sustainedEnergyRef, (snapshot) => {
       setTerms(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })));
     });
     return () => {
@@ -21,15 +21,14 @@ export const Immunity = () => {
   }, []);
 
   const colorScheme = {
-    border: "orange.100",
-    addTermButton: "orange.700",
+    border: "blackAlpha.600",
+    addTermButton: "blackAlpha.600",
     queryTagBg: "orange.500",
     queryTagText: "white",
-    generateButton: "organge",
   };
 
   return (
-    <div className="Immunity">
+    <div className="SustainedEnergy">
       <Box
         maxW="80%"
         margin="1em auto"
@@ -37,13 +36,13 @@ export const Immunity = () => {
         boxShadow="2xl"
         padding={2}
       >
-        <Heading m={4}>Immunity</Heading>
+        <Heading m={4}>Natural Sustained Energy</Heading>
         <InputArea
           currentTerms={terms}
           onUpdateTerms={setTerms}
           themeColor={colorScheme}
           collectionRef={collectionRef}
-          collectionName="immunity"
+          collectionName="sustainedenergy"
         />
         <PrimaryTerms
           terms={terms}
@@ -51,7 +50,7 @@ export const Immunity = () => {
           themeColor={colorScheme}
           termType="Primary Terms"
           collectionRef={collectionRef}
-          collectionName="immunity"
+          collectionName="sustainedenergy"
         />
         <div>&nbsp;</div>
         <ExcludedTerms
@@ -60,7 +59,7 @@ export const Immunity = () => {
           themeColor={colorScheme}
           termType="Excluded Terms"
           collectionRef={collectionRef}
-          collectionName="immunity"
+          collectionName="sustainedenergy"
         />
       </Box>
       <Box
@@ -75,3 +74,5 @@ export const Immunity = () => {
     </div>
   );
 };
+
+export default SustainedEnergy;
