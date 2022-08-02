@@ -5,9 +5,9 @@ const Clipboard = (props) => {
   const toast = useToast();
 
   const copyTrendsToClipboard = () => {
-    const primaryArray = props.terms.map((term) => term.data.text);
-    const primaryString = primaryArray.join(";");
-    navigator.clipboard.writeText(primaryString);
+    const trendArray = props.terms.map((term) => term.name);
+    const trendString = trendArray.join(";");
+    navigator.clipboard.writeText(trendString);
   };
 
   return (
@@ -42,7 +42,7 @@ const Clipboard = (props) => {
         >
           Copy to Clipboard
         </Button>
-        <Button marginTop={1}>Export to Excel (In Development)</Button>
+        <Button marginTop={1}>Export to Excel (Under Development)</Button>
       </Flex>
     </div>
   );
