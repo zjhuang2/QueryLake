@@ -11,6 +11,8 @@
     "@fontsource/lato": "^4.5.8",
     "@fontsource/manrope": "^4.5.10",
     "@fontsource/open-sans": "^4.5.10",
+    "@fontsource/pt-mono": "^4.5.9",
+    "@fontsource/roboto-mono": "^4.5.7",
     "@fontsource/space-grotesk": "^4.5.8",
     "@reduxjs/toolkit": "^1.8.3",
     "@testing-library/jest-dom": "^5.16.4",

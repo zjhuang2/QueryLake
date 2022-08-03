@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Text, Heading, Flex, useToast, Box } from "@chakra-ui/react";
+import "@fontsource/pt-mono";
 
 const Clipboard = (props) => {
   const toast = useToast();
@@ -35,7 +36,9 @@ const Clipboard = (props) => {
         {props.terms
           .filter((term) => term.data.type === "primary")
           .map((primaryTerm) => (
-            <Text as="span">{primaryTerm.data.text};</Text>
+            <Text as="span" fontFamily="PT Mono">
+              {primaryTerm.data.text};
+            </Text>
           ))}
       </Box>
       <Flex>
@@ -73,7 +76,9 @@ const Clipboard = (props) => {
         {props.terms
           .filter((term) => term.data.type === "excluded")
           .map((excludedTerm) => (
-            <Text as="span">{excludedTerm.data.text};</Text>
+            <Text as="span" fontFamily="PT Mono">
+              {excludedTerm.data.text};
+            </Text>
           ))}
       </Box>
       <Flex>

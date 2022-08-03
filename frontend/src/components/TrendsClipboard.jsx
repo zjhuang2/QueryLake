@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Text, Heading, Flex, useToast, Box } from "@chakra-ui/react";
+import "@fontsource/pt-mono";
 
 const Clipboard = (props) => {
   const toast = useToast();
@@ -23,7 +24,9 @@ const Clipboard = (props) => {
         marginBottom={5}
       >
         {props.terms.map((trendTerm) => (
-          <Text as="span">{trendTerm.name};</Text>
+          <Text as="span" fontFamily="PT Mono">
+            {trendTerm.name};
+          </Text>
         ))}
       </Box>
       <Flex>
