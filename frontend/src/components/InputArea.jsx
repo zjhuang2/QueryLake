@@ -59,7 +59,7 @@ const InputArea = (props) => {
             value={inputTerm}
           />
           <Button
-            color={themeColor.addTermButton}
+            color="green.700"
             variant="ghost"
             size="lg"
             onClick={handleAddIncludedTerm}
@@ -67,7 +67,7 @@ const InputArea = (props) => {
             Add Primary Term
           </Button>
           <Button
-            color={themeColor.addTermButton}
+            color="red.700"
             variant="ghost"
             size="lg"
             onClick={handleAddExcludedTerm}

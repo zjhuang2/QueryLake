@@ -10,7 +10,7 @@ const ExcludedTerms = (props) => {
   const collectionName = props.collectionName;
 
   const deleteTerm = (id) => {
-    const docRef = doc(db, collectionName, id);
+    const docRef = doc(db, "kouery", collectionName, "terms", id);
     deleteDoc(docRef)
       .then(() => {
         console.log("Document deleted");

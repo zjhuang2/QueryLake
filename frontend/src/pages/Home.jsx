@@ -26,8 +26,7 @@ const Home = () => {
         <Text
           fontSize="7xl"
           fontWeight="extrabold"
-          bgGradient="linear(to-l, #F56565, #805AD5)"
-          bgClip="text"
+          color="red.400"
           textAlign="center"
         >
           Introducing KOuery.
@@ -45,11 +44,12 @@ const Home = () => {
               <Button
                 height={20}
                 width="auto"
-                bgGradient="linear(to-l, #F56565, #805AD5)"
+                bgColor="red.500"
                 color="white"
                 fontSize="2xl"
                 rounded="2xl"
                 margin={8}
+                shadow="xl"
               >
                 Browse Query Gallary
               </Button>
@@ -59,11 +59,12 @@ const Home = () => {
               <Button
                 height={20}
                 width="auto"
-                bgGradient="linear(to-l, teal.500, green.500)"
+                bgColor="red.500"
                 color="white"
                 fontSize="2xl"
                 rounded="2xl"
                 margin={8}
+                shadow="xl"
               >
                 View Real-Time Trends
               </Button>
@@ -75,17 +76,19 @@ const Home = () => {
 
       <Container maxW="90%" centerContent>
         <Box textAlign="center" marginTop={12} marginBottom={5}>
-          <Heading size="2xl">Features</Heading>
+          <Heading size="2xl" color="red.400">
+            Features
+          </Heading>
         </Box>
         <SimpleGrid columns={2} spacing={2} maxW="90%" marginLeft="4%">
           <Box
             maxW="90%"
             margin="1em 0"
             rounded="2xl"
-            boxShadow="2xl"
             padding={12}
-            bgColor="blue.400"
-            color="white"
+            border="solid 1px"
+            borderColor="blackAlpha.300"
+            color="blackAlpha.800"
           >
             <Heading>Collaborative Query Curation.</Heading>
             <div>&nbsp;</div>
@@ -99,10 +102,10 @@ const Home = () => {
             maxW="90%"
             margin="1em 0"
             rounded="2xl"
-            boxShadow="2xl"
             padding={12}
-            bgColor="pink.400"
-            color="white"
+            border="solid 1px"
+            borderColor="blackAlpha.300"
+            color="blackAlpha.800"
           >
             <Heading size="xl">Dictionary-Sourced Similar Words.</Heading>
             <div>&nbsp;</div>
@@ -116,10 +119,10 @@ const Home = () => {
             maxW="90%"
             margin="1em 0"
             rounded="2xl"
-            boxShadow="2xl"
             padding={12}
-            bgColor="green.400"
-            color="white"
+            border="solid 1px"
+            borderColor="blackAlpha.300"
+            color="blackAlpha.800"
           >
             <Heading size="xl">Associated Words and Phrases.</Heading>
             <div>&nbsp;</div>
@@ -133,10 +136,10 @@ const Home = () => {
             maxW="90%"
             margin="1em 0"
             rounded="2xl"
-            boxShadow="2xl"
             padding={12}
-            bgColor="orange.400"
-            color="white"
+            border="solid 1px"
+            borderColor="blackAlpha.300"
+            color="blackAlpha.800"
           >
             <Heading size="xl">Real-Time Twitter Trends.</Heading>
             <div>&nbsp;</div>

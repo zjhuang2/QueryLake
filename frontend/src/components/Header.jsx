@@ -19,10 +19,16 @@ const Header = () => {
         <Flex>
           <Link as={ReactLink} to="/">
             <Flex>
-              <Text fontSize="5xl" fontWeight="bold" margin={2}>
+              <Text
+                fontSize="5xl"
+                fontWeight="bold"
+                margin={2}
+                bgGradient="linear(to-l, #3494E6, #EC6EAD)"
+                bgClip="text"
+              >
                 KOuery for TCR
               </Text>
-              <Tag bgColor="red.500" color="white" height={2} marginTop={3}>
+              <Tag bgColor="blue.500" color="white" height={2} marginTop={3}>
                 <TagLabel>Beta</TagLabel>
               </Tag>
             </Flex>

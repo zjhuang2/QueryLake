@@ -1,25 +1,25 @@
 import React from "react";
 import { Link as ReactLink } from "react-router-dom";
-import { Flex, Image, Center, Text } from "@chakra-ui/react";
+import { Flex, Image, Center, Text, Box } from "@chakra-ui/react";
 
 const GallaryItem = (props) => {
   return (
     <div>
       <ReactLink to={props.path}>
-        <Flex
+        <Box
           border="solid 1px"
           borderColor="blackAlpha.500"
           rounded="xl"
           className="gallaryItem"
           overflow="hidden"
+          padding={4}
+          marginTop={4}
+          marginBottom={4}
         >
-          <Image src={props.imgSource} objectFit="cover" w={200} h={150} />
-          <Center padding={8}>
-            <Text fontSize="2xl" fontWeight="bold" color="blackAlpha.700">
-              {props.name}
-            </Text>
-          </Center>
-        </Flex>
+          <Text fontSize="xl" fontWeight="bold" color="blackAlpha.700">
+            {props.name}
+          </Text>
+        </Box>
       </ReactLink>
     </div>
   );
