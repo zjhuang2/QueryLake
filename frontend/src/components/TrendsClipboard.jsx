@@ -24,7 +24,7 @@ const Clipboard = (props) => {
         marginBottom={5}
       >
         {props.terms.map((trendTerm) => (
-          <Text as="span" fontFamily={("PT Mono", "monospace")}>
+          <Text as="span" fontFamily="PT Mono" fontWeight="bold">
             {trendTerm.name};
           </Text>
         ))}

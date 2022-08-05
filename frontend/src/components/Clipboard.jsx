@@ -36,7 +36,7 @@ const Clipboard = (props) => {
         {props.terms
           .filter((term) => term.data.type === "primary")
           .map((primaryTerm) => (
-            <Text as="span" fontFamily={("PT Mono", "monospace")}>
+            <Text as="span" fontFamily="PT Mono" fontWeight="bold">
               {primaryTerm.data.text};
             </Text>
           ))}
@@ -76,7 +76,7 @@ const Clipboard = (props) => {
         {props.terms
           .filter((term) => term.data.type === "excluded")
           .map((excludedTerm) => (
-            <Text as="span" fontFamily={("PT Mono", "monospace")}>
+            <Text as="span" fontFamily="PT Mono" fontWeight="bold">
               {excludedTerm.data.text};
             </Text>
           ))}

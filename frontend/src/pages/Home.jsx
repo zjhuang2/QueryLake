@@ -51,7 +51,7 @@ const Home = () => {
                 margin={8}
                 shadow="xl"
               >
-                Browse Query Gallary
+                Browse Query Gallery
               </Button>
             </ReactLink>
 

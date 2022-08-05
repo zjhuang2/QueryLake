@@ -59,7 +59,7 @@ const Header = () => {
               width="auto"
               color="blackAlpha.700"
             >
-              Query Gallary
+              Query Gallery
             </Button>
           </ReactLink>
           <ReactLink as={ReactLink} to="/twitter-trends">
