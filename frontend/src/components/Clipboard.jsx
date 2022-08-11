@@ -57,7 +57,7 @@ const Clipboard = (props) => {
         >
           Copy to Clipboard
         </Button>
-        <Button marginTop={1}>Export to Excel (In Development)</Button>
+        <Button marginTop={1}>Export to Excel (Under Development)</Button>
       </Flex>
 
       <div>&nbsp;&nbsp;</div>
